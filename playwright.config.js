@@ -17,6 +17,7 @@ export default defineConfig({
     command: 'npm run start',
     url: 'http://localhost:8080/',
     timeout: 120 * 1000,
+    /* eslint-disable no-undef */
     reuseExistingServer: !process.env.CI,
   },
   testDir: './tests',
@@ -87,4 +88,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 })
-
