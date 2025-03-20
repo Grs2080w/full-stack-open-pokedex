@@ -25,4 +25,4 @@ jobs:
     steps:
       - name: List files on dir
         run: |
-          ls
+          ls -l
