@@ -11,6 +11,6 @@ jobs:
       - name: Trigger deployment
         uses: sws2apps/render-deployment@v1.8.0
         with:
-          serviceId: https://full-stack-open-pokedex-l9gx.onrender.com
-          apiKey: rnd_RQYfcpUd3oeT9geLVscwUNm74fkR
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
           multipleDeployment: false
