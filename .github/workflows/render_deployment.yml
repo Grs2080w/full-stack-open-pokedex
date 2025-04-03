@@ -8,6 +8,8 @@ jobs:
     name: Deploy to Render
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        run: echo secrets.RENDER_SERVICE_ID && echo secrets.RENDER_API_KEY
       - name: Trigger deployment
         uses: sws2apps/render-deployment@v1.8.0
         with:
