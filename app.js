@@ -12,6 +12,10 @@ app.get("/version", (req, res) => {
 	res.send("with test berfore deploy")
 })
 
+app.get('/healthz', (req, res) => {
+	res.send('ok')
+  })
+
 app.listen(PORT, () => {
 	console.log(`server started on port ${PORT}`)
 })

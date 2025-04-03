@@ -1,4 +1,4 @@
-# .github/workflows/ci.yml
+name: CI
 
 on:
   pull_request:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   ci:
+    # Tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +28,7 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      # Deploy
       - name: Deploy
         # Only run this step if the branch is main
         if: github.ref == 'refs/heads/main'
