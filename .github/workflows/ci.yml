@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  ci:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -27,10 +27,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
       - name: Deploy
         # Only run this step if the branch is main
         if: github.ref == 'refs/heads/main'
