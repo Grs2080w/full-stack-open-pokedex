@@ -22,7 +22,6 @@ jobs:
   tag_release:
     needs: [pipeline]
     if: github.ref == 'refs/heads/main'
-    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-20.04
     steps:
       - name: Bump version and push tag
