@@ -18,7 +18,7 @@ jobs:
       - name: Build Project
         run: npm run build
       - name: Run Jest Tests
-        run: npm run teste
+        run: npm run test
   tags:
     needs: [pipeline]
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
