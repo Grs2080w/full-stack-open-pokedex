@@ -5,6 +5,7 @@ on:
 jobs:
   deploy:
     if: github.ref == 'refs/heads/main'
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
