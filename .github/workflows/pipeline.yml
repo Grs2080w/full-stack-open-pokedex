@@ -19,14 +19,13 @@ jobs:
         run: npm run build
       - name: Run Jest Tests
         run: npm run test
-  tagrelease:
-    needs: [pipeline]
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.73.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          TAG_PREFIX: v
-          PRERELEASE: true
+  tags:
+  needs: [pipeline]
+  if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+  steps:
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.73.0
+      env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      TAG_PREFIX: v
+      PRERELEASE: true
