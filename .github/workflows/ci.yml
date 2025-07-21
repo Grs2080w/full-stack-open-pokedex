@@ -12,6 +12,7 @@ jobs:
   playwright:
     uses: ./.github/workflows/playwright.yml
   deploy:
+    needs: [pipeline, playwright]
     if: github.ref == 'refs/heads/main'
     timeout-minutes: 60
     runs-on: ubuntu-latest
