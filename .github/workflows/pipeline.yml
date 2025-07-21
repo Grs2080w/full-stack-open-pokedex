@@ -17,5 +17,5 @@ jobs:
         run: npm run eslint
       - name: Build Project
         run: npm run build
-      - name: Run Jets Tests
+      - name: Run Jest Tests
         run: npm run test
