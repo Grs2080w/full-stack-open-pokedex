@@ -9,9 +9,10 @@ jobs:
   pipeline:
     uses: ./.github/workflows/pipeline.yml
   playwright:
+    needs: [pipeline]
     uses: ./.github/workflows/playwright.yml
   deploy:
-    needs: [pipeline, playwright]
+    needs: [playwright]
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
 
