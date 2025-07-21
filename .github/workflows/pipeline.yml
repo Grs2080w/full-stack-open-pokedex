@@ -22,10 +22,11 @@ jobs:
   tags:
     needs: [pipeline]
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
     steps:
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.73.0
         env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TAG_PREFIX: v
-        PRERELEASE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          TAG_PREFIX: v
+          PRERELEASE: true
