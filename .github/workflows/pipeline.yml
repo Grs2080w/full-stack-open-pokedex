@@ -4,22 +4,18 @@ on:
   workflow_call:
 
 jobs:
-  simple_deployment_pipeline:
+  style-jest-build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          
       - name: Install Dependencies
         run: npm ci
-
       - name: Run Eslint
         run: npm run eslint
-
       - name: Build Project
         run: npm run build
-
       - name: Run Jets Tests
         run: npm run test
