@@ -17,7 +17,7 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
   discord_log_pipeline_sucess:
-    name: Log pipeline status
+    name: Log pipeline status sucess
     needs: [pipeline, playwright, deploy]
     if: success()
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
           color: '#00ff00'
           description: "to ${{ secrets.URL_API }} by ${{ github.actor }}"
   discord_log_pipeline_failure:
-    name: Log pipeline status
+    name: Log pipeline status failure
     needs: [pipeline, playwright, deploy]
     if: failure()
     runs-on: ubuntu-latest
