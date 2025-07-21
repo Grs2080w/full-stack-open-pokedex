@@ -32,3 +32,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           TAG_PREFIX: v
           PRERELEASE: true
+  discord_log_pipeline:
+    name: Log pipeline status
+    needs: [pipeline]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Discord
+        uses: rjstone/discord-webhook-notify@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: CI Bot
+          text: "Pipeline terminou com status `${{ needs.pipeline.result }}`"
+          severity: ${{ needs.pipeline.result == 'success' && 'info' || 'error' }}
+          color: ${{ needs.pipeline.result == 'success' && '#00ff00' || '#ff0000' }}

@@ -23,3 +23,17 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+  discord_log_playwright:
+    name: Log playwright status
+    needs: [test]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Discord
+        uses: rjstone/discord-webhook-notify@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: CI Bot
+          text: "Pipeline terminou com status `${{ needs.test.result }}`"
+          severity: ${{ needs.test.result == 'success' && 'info' || 'error' }}
+          color: ${{ needs.test.result == 'success' && '#00ff00' || '#ff0000' }}          
