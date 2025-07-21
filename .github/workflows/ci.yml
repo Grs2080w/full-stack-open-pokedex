@@ -19,7 +19,6 @@ jobs:
   discord_log_pipeline_sucess:
     name: Log pipeline status
     needs: [pipeline, playwright, deploy]
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     if: success()
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +35,6 @@ jobs:
   discord_log_pipeline_failure:
     name: Log pipeline status
     needs: [pipeline, playwright, deploy]
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     if: failure()
     runs-on: ubuntu-latest
     steps:
