@@ -1,16 +1,16 @@
 name: Deployment pipeline
-
 on:
   workflow_call:
 
 jobs:
-  style-jest-build:
-    runs-on: ubuntu-20.04
+  pipeline:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
       - name: Install Dependencies
         run: npm ci
       - name: Run Eslint
