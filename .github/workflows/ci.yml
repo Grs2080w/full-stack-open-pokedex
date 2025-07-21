@@ -12,13 +12,5 @@ jobs:
     uses: ./.github/workflows/playwright.yml
   deploy:
     needs: [pipeline, playwright]
-    if: github.ref == 'refs/heads/main'
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Deploy
-        env:
-          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
-        run: |
-          curl "$deploy_url"
+    uses: ./.github/workflows/deploy.yml
         
