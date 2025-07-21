@@ -13,4 +13,7 @@ jobs:
   deploy:
     needs: [pipeline, playwright]
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      render_deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
         
