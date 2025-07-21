@@ -16,5 +16,22 @@ jobs:
     needs: [playwright]
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
+  discord_log_pipeline:
+    name: Log pipeline status
+    needs: [pipeline, playwright, deploy]
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Discord
+        uses: rjstone/discord-webhook-notify@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: CI Bot
+          title: Sucess
+          text: "A new version of pokedex has deployed with sucess"
+          severity: info
+          color: '#00ff00'
+          description: "New version can be found at ${{ secrets.URL_API }}"
+
 
         
