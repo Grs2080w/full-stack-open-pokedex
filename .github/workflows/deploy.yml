@@ -13,17 +13,3 @@ jobs:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
           curl "$deploy_url"
-  discord_log_deploy:
-    name: Log deploy status
-    needs: [deploy]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify Discord
-        uses: rjstone/discord-webhook-notify@v2
-        with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          username: CI Bot
-          text: "Pipeline terminou com status `${{ needs.deploy.result }}`"
-          severity: ${{ needs.deploy.result == 'success' && 'info' || 'error' }}
-          color: ${{ needs.deploy.result == 'success' && '#00ff00' || '#ff0000' }}
