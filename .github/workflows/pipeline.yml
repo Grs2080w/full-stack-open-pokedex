@@ -19,3 +19,15 @@ jobs:
         run: npm run build
       - name: Run Jest Tests
         run: npm run test
+  tag_release:
+    needs: [pipeline]
+    if: github.ref == 'refs/heads/main'
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.73.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          TAG_PREFIX: v
+          PRERELEASE: true

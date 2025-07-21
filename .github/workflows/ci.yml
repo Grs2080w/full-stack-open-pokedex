@@ -8,6 +8,7 @@ on:
 jobs:
   pipeline:
     uses: ./.github/workflows/pipeline.yml
+    secrets: inherit
   playwright:
     needs: [pipeline]
     uses: ./.github/workflows/playwright.yml
